@@ -1,38 +1,296 @@
-.App {
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Antonio:wght@100;700&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-image: radial-gradient(transparent, rgba(22, 22, 22, 0.9)),
+    url("/public/textures.gif");
+  background-attachment: fixed;
+  font-family: "Antonio", sans-serif;
+}
+
+h1 {
+  font-family: "Permanent Marker", cursive;
+  font-size: 4rem;
+  color: aliceblue;
   text-align: center;
+  border-bottom: 2px solid aliceblue;
+  padding: 1rem;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h1 span {
+  margin-bottom: -1rem;
+  letter-spacing: 1rem;
+  text-transform: uppercase;
+  font-family: "Antonio", sans-serif;
+  font-size: 1.25rem;
+  display: block;
+}
+h1 span::after {
+  content: "-";
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h1 span::before {
+  content: "-";
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+h1 span:last-child {
+  font-size: 1.5rem;
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
+  letter-spacing: 0.25rem;
+}
+
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 2rem;
+  justify-content: space-evenly;
+  padding-bottom: 3rem;
+}
+
+.card {
   display: flex;
   flex-direction: column;
+  margin: 2rem 0rem 0.5rem 0;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  overflow: hidden;
+  max-width: 500px;
+  border: 4px solid aliceblue;
+  border-radius: 1rem;
+  background-color: rgb(31, 31, 31);
+  color: aliceblue;
+  box-shadow: 4px 12px 8px black;
 }
 
-.App-link {
-  color: #61dafb;
+.card * {
+  margin: 0 0.5rem 0.5rem 0.5rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.card header {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 2px solid aliceblue;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.card h3 {
+  font-family: "Permanent Marker", cursive;
+  font-size: 2rem;
+  color: aliceblue;
+  text-shadow: 2px 2px 2px black;
+}
+
+.card h4 {
+  font-size: 1.5rem;
+}
+
+.description {
+  flex-grow: 1;
+}
+
+.card footer {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-evenly;
+  font-size: 2rem;
+}
+
+.card footer span {
+  font-family: "Permanent Marker", cursive;
+}
+
+.glass {
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0px 0px 5rem inset rgb(0, 0, 0), 2px 2px 2px black;
+  border-radius: 2rem;
+  border: 2px solid aliceblue;
+  margin: 0.5rem;
+  width: 300px;
+  height: 300px;
+  background-image: linear-gradient(
+    rgb(143, 122, 98) 30%,
+    rgb(238, 226, 192) 95%,
+    rgb(206, 187, 168) 98%,
+    rgb(233, 233, 230)
+  );
+  transition: box-shadow 0.1s;
+}
+
+.mask {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  mask: url("/public/mask.svg");
+  mask-size: 100%;
+  z-index: 1;
+  mix-blend-mode: overlay;
+}
+
+.overlay {
+  opacity: 0.9;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  display: block;
+  width: 300px;
+  height: 300px;
+  mix-blend-mode: hard-light;
+}
+
+.overlay:hover {
+  transform: scale(1.1);
+}
+
+.glass:hover {
+  box-shadow: 0px 0px 0rem inset rgb(0, 0, 0), 2px 2px 2px black;
+}
+
+.glass * {
+  transition: transform 0.1s;
+}
+
+.glass:hover * {
+  transform: scale(1.15) translate(0, -7%);
+}
+
+.text {
+  position: absolute;
+  top: 0;
+  font-size: 12rem;
+}
+
+.App > footer {
+  padding: 0.5rem;
+  border-top: 2px solid aliceblue;
+  background-color: rgba(240, 248, 255, 0.205);
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+
+.App > footer a {
+  color: aliceblue;
+}
+
+.search-bar {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background-color: rgba(240, 248, 255, 0.205);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0.25rem 0.25rem 0.5rem 0.25rem;
+  gap: 1rem;
+}
+
+.search-bar fieldset {
+  border: solid aliceblue 1px;
+  background-color: rgba(158, 161, 164, 0.549);
+  border-radius: 0.5rem;
+  padding: 0.25rem;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-columns: auto auto;
+}
+.search-bar legend {
+  color: aliceblue;
+  text-align: center;
+}
+.search-bar label {
+  font-size: 0.9rem;
+}
+
+.search-bar,
+.search-bar input {
+  font-size: 1.25rem;
+  font-family: "Antonio", sans-serif;
+}
+
+.search-bar {
+  margin-bottom: 1rem;
+}
+
+.search-bar input[type="range"] {
+  background-color: aliceblue;
+}
+
+.r {
+  color: red;
+  animation: text-animation 0.5s infinite alternate;
+}
+@keyframes text-animation {
+  0% {
+    transform: translateX(0px);
+    text-shadow: 0px 0px rgb(255, 0, 0);
   }
-  to {
-    transform: rotate(360deg);
+  25% {
+    transform: translateX(-5px);
+    text-shadow: 0px 0px 12px rgb(255, 0, 0);
+  }
+  50% {
+    transform: translateX(0px);
+    text-shadow: 0px 0px rgb(255, 0, 0);
+  }
+  100% {
+    transform: translateX(12px);
+    text-shadow: 0px 0px 12px rgb(255, 0, 0);
+  }
+}
+.g {
+  color: rgb(0, 255, 0);
+  mix-blend-mode: screen;
+}
+.b {
+  color: blue;
+  left: -2px;
+  mix-blend-mode: screen;
+}
+.imagen-api {
+  max-width: 150px;
+  max-height: 150px;
+  background-color: rgb(51, 51, 51);
+  padding: 0.25rem 0.5rem;
+  border: 2px dotted white;
+  border-radius: 0.5rem;
+}
+
+@media (max-width: 750px) {
+  html {
+    background-image: url("/public/textures.gif");
+    background-attachment: scroll;
+    font-family: "Antonio", sans-serif;
+  }
+
+  .search-bar {
+    height: auto;
+    flex-direction: column;
+    gap: 0;
+  }
+  .search-bar fieldset {
+    visibility: hidden;
+    height: 0;
+  }
+  .search-bar:focus fieldset {
+    visibility: visible;
+    height: auto;
+  }
+  .search-bar input[type="text"] {
+    text-align: center;
   }
 }
