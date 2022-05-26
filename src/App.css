@@ -14,6 +14,11 @@ html {
   font-family: "Antonio", sans-serif;
 }
 
+header a {
+  text-decoration: inherit;
+  color: inherit;
+}
+
 h1 {
   font-family: "Permanent Marker", cursive;
   font-size: 4rem;
@@ -39,6 +44,33 @@ h1 span::before {
   content: "-";
 }
 
+main nav {
+  text-align: center;
+  color: aliceblue;
+  font-size: 1.3rem;
+  margin-bottom: 0;
+}
+main nav button {
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1.3rem;
+  padding: 0.5rem;
+  border: none;
+  background-color: none;
+  background: none;
+  color: inherit;
+}
+main nav button:hover {
+  background-color: rgba(128, 128, 128, 0.25);
+  box-shadow: 0 0 1rem inset rgba(0, 0, 0, 0.469);
+}
+main nav .actual {
+  background-color: rgba(230, 230, 230, 0.25);
+}
+main nav .actual:hover {
+  background-color: rgba(230, 230, 230, 0.25);
+}
+
 h1 span:last-child {
   font-size: 1.5rem;
   margin-top: -0.5rem;
@@ -52,6 +84,57 @@ ul {
   row-gap: 2rem;
   justify-content: space-evenly;
   padding-bottom: 3rem;
+}
+
+section {
+  font-size: 1.3rem;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+  max-width: 800px;
+  color: aliceblue;
+  padding: 0;
+  text-align: justify;
+}
+section h2 {
+  text-shadow: 2px 2px 2px black;
+}
+section:nth-child(2n + 1) {
+  border-left: 2px solid aliceblue;
+  padding-right: 2rem;
+  padding-left: 1rem;
+}
+section:nth-child(2n + 1) h2 {
+  text-align: left;
+}
+section:nth-child(2n) {
+  border-right: 2px solid aliceblue;
+  padding-left: 2rem;
+  padding-right: 1rem;
+}
+section:nth-child(2n) h2 {
+  text-align: right;
+}
+section:first-of-type {
+  border: none;
+  padding: 1rem;
+}
+section:first-of-type h2 {
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+section h2 {
+  margin-bottom: 1rem;
+}
+section a {
+  color: inherit;
+}
+section img {
+  width: 100%;
+  margin: 0;
+}
+section:last-child {
+  margin-bottom: 4rem;
 }
 
 .card {
@@ -127,6 +210,7 @@ ul {
     rgb(233, 233, 230)
   );
   transition: box-shadow 0.1s;
+  cursor: pointer;
 }
 
 .mask {
@@ -208,6 +292,10 @@ ul {
   grid-template-columns: auto auto;
   grid-template-columns: auto auto;
 }
+.search-bar fieldset.order {
+  grid-template-columns: auto auto auto auto;
+  grid-template-columns: auto auto auto auto;
+}
 .search-bar legend {
   color: aliceblue;
   text-align: center;
@@ -270,7 +358,7 @@ ul {
   border-radius: 0.5rem;
 }
 
-@media (max-width: 750px) {
+@media (max-width: 1000px) {
   html {
     background-image: url("/public/textures.gif");
     background-attachment: scroll;

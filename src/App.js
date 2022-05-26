@@ -1,22 +1,32 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-
+import BeerDetails from "./views/BeerDetails";
+import Collection from "./views/Collection";
 import BeerSearch from "./views/BeerSearch";
+import Home from "./views/Home";
+import NavBar from "./components/NavBar";
 
 function App() {
   return (
     <div className="App">
       <header>
         <h1>
-          <span>The complete</span>Brewdog<span>catalogue</span>
+          <a href="/">
+            <span>The complete</span>Brewdog<span>catalogue</span>
+          </a>
         </h1>
       </header>
       <main>
-        <BeerSearch></BeerSearch>
+        <BrowserRouter>
+          <NavBar></NavBar>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/beers" element={<BeerSearch />} />
+            <Route path="/collection" element={<Collection />} />
+            <Route path="/beers/:userId" element={<BeerDetails />} />
+          </Routes>
+        </BrowserRouter>
       </main>
-
-      {/* <div className="text r">Mucho Texto</div>
-      <div className="text g">Mucho Texto</div>
-      <div className="text b">Mucho Texto</div> */}
       <footer>
         Created by <a href="https://github.com/manoelcl">Manoel Castro</a>,
         2022. Powered by <a href="https://punkapi.com/">Punk API</a>
