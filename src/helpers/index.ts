@@ -41,5 +41,14 @@ const SRM_VALUES = [
   "#36080A",
 ];
 
-export const srmToHex = (srm) =>
+export const srmToHex = (srm: number) =>
   SRM_VALUES[srm > 40 ? 39 : Math.round(srm) - 1];
+
+export const generateUrlQuery = (params: string[]) => {
+  let query = "?";
+  for (const property in params) {
+    query = `${query}${property}=${params[property]}&`;
+  }
+  console.log(query);
+  return query;
+};

@@ -7,6 +7,17 @@
   padding: 0;
 }
 
+:root {
+  --main-color: aliceblue;
+  --bg-gradient1: rgb(143, 122, 98);
+  --bg-gradient2: rgb(238, 226, 192);
+  --bg-gradient3: rgb(206, 187, 168);
+  --bg-gradient4: rgb(233, 233, 230);
+  --transparent-bg1: rgba(240, 248, 255, 0.205);
+  --transparent-bg2: rgba(158, 161, 164, 0.549);
+  --button-hover: rgba(170, 170, 170, 0.447);
+}
+
 html {
   background-image: radial-gradient(transparent, rgba(22, 22, 22, 0.9)),
     url("/public/textures.gif");
@@ -20,11 +31,12 @@ header a {
 }
 
 h1 {
+  text-shadow: 2px 2px 2px black;
   font-family: "Permanent Marker", cursive;
   font-size: 4rem;
-  color: aliceblue;
+  color: var(--main-color);
   text-align: center;
-  border-bottom: 2px solid aliceblue;
+  border-bottom: 2px solid var(--main-color);
   padding: 1rem;
 }
 
@@ -36,6 +48,7 @@ h1 span {
   font-size: 1.25rem;
   display: block;
 }
+
 h1 span::after {
   content: "-";
 }
@@ -44,12 +57,20 @@ h1 span::before {
   content: "-";
 }
 
+h1 span:last-child {
+  font-size: 1.5rem;
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
+  letter-spacing: 0.25rem;
+}
+
 main nav {
   text-align: center;
-  color: aliceblue;
+  color: var(--main-color);
   font-size: 1.3rem;
   margin-bottom: 0;
 }
+
 main nav button {
   cursor: pointer;
   font-family: inherit;
@@ -60,22 +81,18 @@ main nav button {
   background: none;
   color: inherit;
 }
+
 main nav button:hover {
-  background-color: rgba(128, 128, 128, 0.25);
+  background-color: var(--button-hover);
   box-shadow: 0 0 1rem inset rgba(0, 0, 0, 0.469);
 }
+
 main nav .actual {
   background-color: rgba(230, 230, 230, 0.25);
 }
+
 main nav .actual:hover {
   background-color: rgba(230, 230, 230, 0.25);
-}
-
-h1 span:last-child {
-  font-size: 1.5rem;
-  margin-top: -0.5rem;
-  margin-bottom: 1rem;
-  letter-spacing: 0.25rem;
 }
 
 ul {
@@ -89,52 +106,84 @@ ul {
 section {
   font-size: 1.3rem;
   margin: 0 auto;
-  margin-bottom: 1rem;
   max-width: 800px;
-  color: aliceblue;
-  padding: 0;
+  color: var(--main-color);
+  padding: 2rem 1rem 2rem 1rem;
   text-align: justify;
 }
+
 section h2 {
   text-shadow: 2px 2px 2px black;
+  margin-bottom: 1rem;
 }
-section:nth-child(2n + 1) {
-  border-left: 2px solid aliceblue;
-  padding-right: 2rem;
-  padding-left: 1rem;
+
+section:nth-of-type(2n + 1) {
+  border-left: 2px solid var(--main-color);
 }
-section:nth-child(2n + 1) h2 {
+
+section:nth-of-type(2n + 1) h2 {
   text-align: left;
 }
-section:nth-child(2n) {
-  border-right: 2px solid aliceblue;
-  padding-left: 2rem;
-  padding-right: 1rem;
+
+section:nth-of-type(2n) {
+  border-right: 2px solid var(--main-color);
 }
-section:nth-child(2n) h2 {
+
+section:nth-of-type(2n) h2 {
   text-align: right;
 }
+
 section:first-of-type {
   border: none;
-  padding: 1rem;
+  padding: 0;
 }
+
 section:first-of-type h2 {
   text-transform: uppercase;
   text-align: center;
-  margin-bottom: 2rem;
-}
-section h2 {
   margin-bottom: 1rem;
 }
+
 section a {
   color: inherit;
 }
+
 section img {
   width: 100%;
-  margin: 0;
 }
+
 section:last-child {
-  margin-bottom: 4rem;
+  margin-bottom: 2.5rem;
+}
+
+section:first-of-type p {
+  margin: 0 1rem 1rem 1rem;
+}
+
+.card-big {
+  display: flex;
+  margin: 0 auto;
+  flex-direction: column;
+
+  align-items: center;
+  overflow: hidden;
+  max-width: 1000px;
+  border: 4px solid var(--main-color);
+  border-radius: 1rem;
+  background-color: rgb(31, 31, 31);
+  color: var(--main-color);
+  box-shadow: 4px 12px 8px black;
+}
+
+.card-big header {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 2px solid var(--main-color);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  width: 100%;
 }
 
 .card {
@@ -144,10 +193,10 @@ section:last-child {
   align-items: center;
   overflow: hidden;
   max-width: 500px;
-  border: 4px solid aliceblue;
+  border: 4px solid var(--main-color);
   border-radius: 1rem;
   background-color: rgb(31, 31, 31);
-  color: aliceblue;
+  color: var(--main-color);
   box-shadow: 4px 12px 8px black;
 }
 
@@ -160,7 +209,7 @@ section:last-child {
   text-align: center;
   flex-direction: column;
   align-items: center;
-  border-bottom: 2px solid aliceblue;
+  border-bottom: 2px solid var(--main-color);
   padding: 1rem;
   margin-bottom: 1rem;
   width: 100%;
@@ -169,7 +218,7 @@ section:last-child {
 .card h3 {
   font-family: "Permanent Marker", cursive;
   font-size: 2rem;
-  color: aliceblue;
+  color: var(--main-color);
   text-shadow: 2px 2px 2px black;
 }
 
@@ -179,6 +228,8 @@ section:last-child {
 
 .description {
   flex-grow: 1;
+  text-align: justify;
+  hyphens: auto;
 }
 
 .card footer {
@@ -199,15 +250,15 @@ section:last-child {
   overflow: hidden;
   box-shadow: 0px 0px 5rem inset rgb(0, 0, 0), 2px 2px 2px black;
   border-radius: 2rem;
-  border: 2px solid aliceblue;
+  border: 2px solid var(--main-color);
   margin: 0.5rem;
   width: 300px;
   height: 300px;
   background-image: linear-gradient(
-    rgb(143, 122, 98) 30%,
-    rgb(238, 226, 192) 95%,
-    rgb(206, 187, 168) 98%,
-    rgb(233, 233, 230)
+    var(--bg-gradient1) 30%,
+    var(--bg-gradient2) 95%,
+    var(--bg-gradient3) 98%,
+    var(--bg-gradient4)
   );
   transition: box-shadow 0.1s;
   cursor: pointer;
@@ -260,46 +311,56 @@ section:last-child {
 
 .App > footer {
   padding: 0.5rem;
-  border-top: 2px solid aliceblue;
-  background-color: rgba(240, 248, 255, 0.205);
+  border-top: 2px solid var(--main-color);
+  background-color: var(--transparent-bg1);
   position: fixed;
   width: 100%;
   bottom: 0;
 }
 
 .App > footer a {
-  color: aliceblue;
+  color: var(--main-color);
 }
 
 .search-bar {
   position: sticky;
   top: 0;
   z-index: 2;
-  background-color: rgba(240, 248, 255, 0.205);
+  background-color: var(--transparent-bg1);
   display: flex;
   flex-direction: row;
+  justify-content: center;
   align-items: center;
   padding: 0.25rem 0.25rem 0.5rem 0.25rem;
-  gap: 1rem;
+}
+.search-bar > * {
+  margin: 0 0.5rem;
 }
 
 .search-bar fieldset {
-  border: solid aliceblue 1px;
-  background-color: rgba(158, 161, 164, 0.549);
+  border: solid var(--main-color) 1px;
+  background-color: var(--transparent-bg2);
   border-radius: 0.5rem;
   padding: 0.25rem;
   display: grid;
   grid-template-columns: auto auto;
   grid-template-columns: auto auto;
 }
+
+.separator {
+  flex-grow: 1;
+}
+
 .search-bar fieldset.order {
   grid-template-columns: auto auto auto auto;
   grid-template-columns: auto auto auto auto;
 }
+
 .search-bar legend {
-  color: aliceblue;
+  color: var(--main-color);
   text-align: center;
 }
+
 .search-bar label {
   font-size: 0.9rem;
 }
@@ -315,40 +376,9 @@ section:last-child {
 }
 
 .search-bar input[type="range"] {
-  background-color: aliceblue;
+  background-color: var(--main-color);
 }
 
-.r {
-  color: red;
-  animation: text-animation 0.5s infinite alternate;
-}
-@keyframes text-animation {
-  0% {
-    transform: translateX(0px);
-    text-shadow: 0px 0px rgb(255, 0, 0);
-  }
-  25% {
-    transform: translateX(-5px);
-    text-shadow: 0px 0px 12px rgb(255, 0, 0);
-  }
-  50% {
-    transform: translateX(0px);
-    text-shadow: 0px 0px rgb(255, 0, 0);
-  }
-  100% {
-    transform: translateX(12px);
-    text-shadow: 0px 0px 12px rgb(255, 0, 0);
-  }
-}
-.g {
-  color: rgb(0, 255, 0);
-  mix-blend-mode: screen;
-}
-.b {
-  color: blue;
-  left: -2px;
-  mix-blend-mode: screen;
-}
 .imagen-api {
   max-width: 150px;
   max-height: 150px;
@@ -356,6 +386,32 @@ section:last-child {
   padding: 0.25rem 0.5rem;
   border: 2px dotted white;
   border-radius: 0.5rem;
+}
+
+.parallax {
+  min-height: 300px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: 0 0 1rem inset black;
+  mask: linear-gradient(
+    90deg,
+    transparent 5%,
+    white 15%,
+    white 85%,
+    transparent 95%
+  );
+  mix-blend-mode: hard-light;
+  filter: grayscale(0.8) brightness(1.65);
+}
+
+.image1 {
+  background-image: url("/public/images/brewdog1.jpg");
+}
+
+.image2 {
+  background-image: url("/public/images/code.jpg");
 }
 
 @media (max-width: 1000px) {
@@ -370,15 +426,21 @@ section:last-child {
     flex-direction: column;
     gap: 0;
   }
+
   .search-bar fieldset {
     visibility: hidden;
     height: 0;
   }
+
   .search-bar:focus fieldset {
     visibility: visible;
     height: auto;
   }
+
   .search-bar input[type="text"] {
     text-align: center;
+  }
+  .parallax {
+    mask: none;
   }
 }

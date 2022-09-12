@@ -1,29 +1,36 @@
-const SearchBar = ({ params }) => {
+import { ChangeEventHandler } from "react";
+import { SearchBeerParams } from "../types";
+
+interface SearchBarProps {
+  params: SearchBeerParams;
+  updateParams: Event;
+}
+
+const SearchBar: React.FC<SearchBarProps> = ({ params, updateParams }) => {
   console.log(params);
-  const [searchParams, updateSearchParams, updateSearchOrder] = params;
 
   return (
     <form
       className="search-bar"
       onSubmit={(e) => e.preventDefault()}
-      tabIndex="0"
+      tabIndex={0}
     >
       <input
         type="text"
         id="beer_name"
-        onChange={updateSearchParams}
+        onChange={updateParams}
         placeholder="Search by name"
       ></input>
       <fieldset>
         <legend>
-          Alcohol {searchParams.abv_gt}-{searchParams.abv_lt}
+          Alcohol {params.abv_gt}-{params.abv_lt}
         </legend>
         <label htmlFor="abv_lt">max</label>
         <input
           type="range"
           id="abv_lt"
           max={20}
-          defaultValue={20}
+          defaultValue={params.abv_lt}
           onChange={updateSearchParams}
         ></input>
         <label htmlFor="abv_gt">min</label>
@@ -31,20 +38,20 @@ const SearchBar = ({ params }) => {
           type="range"
           id="abv_gt"
           max={20}
-          defaultValue={0}
+          defaultValue={params.abv_gt}
           onChange={updateSearchParams}
         ></input>
       </fieldset>
       <fieldset>
         <legend>
-          Color {searchParams.ebc_gt}-{searchParams.ebc_lt}
+          Color {params.ebc_gt}-{params.ebc_lt}
         </legend>
         <label htmlFor="ebc_lt">max</label>
         <input
           type="range"
           id="ebc_lt"
           max={90}
-          defaultValue={90}
+          defaultValue={params.ebc_lt}
           onChange={updateSearchParams}
         ></input>
         <label htmlFor="ebc_gt">min</label>
@@ -52,7 +59,7 @@ const SearchBar = ({ params }) => {
           type="range"
           id="ebc_gt"
           max={90}
-          defaultValue={0}
+          defaultValue={searchParams.ebc_gt}
           onChange={updateSearchParams}
         ></input>
       </fieldset>
@@ -65,7 +72,7 @@ const SearchBar = ({ params }) => {
           type="range"
           id="ibu_lt"
           max={200}
-          defaultValue={200}
+          defaultValue={searchParams.ibu_lt}
           onChange={updateSearchParams}
         ></input>
         <label htmlFor="ibu_gt">min</label>
@@ -73,10 +80,11 @@ const SearchBar = ({ params }) => {
           type="range"
           id="ibu_gt"
           max={200}
-          defaultValue={0}
+          defaultValue={searchParams.ibu_gt}
           onChange={updateSearchParams}
         ></input>
       </fieldset>
+      {/* <div className="separator"></div> */}
       <fieldset
         className="order"
         onChange={(event) =>

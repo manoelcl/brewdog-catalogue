@@ -23,7 +23,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/beers" element={<BeerSearch />} />
             <Route path="/collection" element={<Collection />} />
-            <Route path="/beers/:userId" element={<BeerDetails />} />
+            <Route path="/beers/:beerId" element={<BeerDetails />} />
           </Routes>
         </BrowserRouter>
       </main>
