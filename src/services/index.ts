@@ -1,4 +1,4 @@
-export const queryBeers = (URLParams, callback) => {
+export const queryBeers = (URLParams: any, callback: any) => {
   let request = "";
   for (const key in URLParams) {
     if (URLParams[key] && URLParams[key] !== "") {
@@ -18,7 +18,7 @@ export const queryBeers = (URLParams, callback) => {
     });
 };
 
-export const getBeer = (id, callback) => {
+export const getBeer = (id: any, callback: any) => {
   fetch(`https://api.punkapi.com/v2/beers/${id}`)
     .then((response) => response.json())
     .then((response) => {
@@ -31,7 +31,7 @@ export const getBeer = (id, callback) => {
     });
 };
 
-export const getBeers = (ids, callback) => {
+export const getBeers = (ids: any, callback: any) => {
   let request = ids.join("|");
 
   fetch(`https://api.punkapi.com/v2/beers?&ids=${request}`)

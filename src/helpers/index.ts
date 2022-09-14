@@ -1,4 +1,4 @@
-const SRM_VALUES = [
+const SRM_VALUES: string[] = [
   "#FFE699",
   "#FFD878",
   "#FFCA5A",

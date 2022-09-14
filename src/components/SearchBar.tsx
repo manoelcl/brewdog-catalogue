@@ -3,7 +3,7 @@ import { SearchBeerParams } from "../types";
 
 interface SearchBarProps {
   params: SearchBeerParams;
-  updateParams: Event;
+  updateParams: ChangeEventHandler;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({ params, updateParams }) => {
@@ -31,7 +31,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ params, updateParams }) => {
           id="abv_lt"
           max={20}
           defaultValue={params.abv_lt}
-          onChange={updateSearchParams}
+          onChange={updateParams}
         ></input>
         <label htmlFor="abv_gt">min</label>
         <input
@@ -39,7 +39,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ params, updateParams }) => {
           id="abv_gt"
           max={20}
           defaultValue={params.abv_gt}
-          onChange={updateSearchParams}
+          onChange={updateParams}
         ></input>
       </fieldset>
       <fieldset>
@@ -52,44 +52,42 @@ const SearchBar: React.FC<SearchBarProps> = ({ params, updateParams }) => {
           id="ebc_lt"
           max={90}
           defaultValue={params.ebc_lt}
-          onChange={updateSearchParams}
+          onChange={updateParams}
         ></input>
         <label htmlFor="ebc_gt">min</label>
         <input
           type="range"
           id="ebc_gt"
           max={90}
-          defaultValue={searchParams.ebc_gt}
-          onChange={updateSearchParams}
+          defaultValue={params.ebc_gt}
+          onChange={updateParams}
         ></input>
       </fieldset>
       <fieldset>
-        <legend>
-          IBU {searchParams.ibu_gt}-{searchParams.ibu_lt}
-        </legend>
+        <legend>{/* IBU {searchParams.ibu_gt}-{searchParams.ibu_lt} */}</legend>
         <label htmlFor="ibu_lt">max</label>
         <input
           type="range"
           id="ibu_lt"
           max={200}
-          defaultValue={searchParams.ibu_lt}
-          onChange={updateSearchParams}
+          defaultValue={params.ibu_lt}
+          onChange={updateParams}
         ></input>
         <label htmlFor="ibu_gt">min</label>
         <input
           type="range"
           id="ibu_gt"
           max={200}
-          defaultValue={searchParams.ibu_gt}
-          onChange={updateSearchParams}
+          defaultValue={params.ibu_gt}
+          onChange={updateParams}
         ></input>
       </fieldset>
       {/* <div className="separator"></div> */}
       <fieldset
         className="order"
-        onChange={(event) =>
-          updateSearchOrder(event.target.id, event.target.value)
-        }
+        // onChange={(event) =>
+        //   updateSearchOrder(event.target.id, event.target.value)
+        // }
       >
         <legend>Order by:</legend>
         <label htmlFor="ibu-asc">IBU asc:</label>

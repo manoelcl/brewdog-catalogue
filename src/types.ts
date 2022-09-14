@@ -10,6 +10,7 @@ export interface Ingredient {
 }
 
 export interface Beer {
+  error: string;
   id: number;
   name: string;
   tagline: string;
@@ -49,6 +50,11 @@ export interface SearchBeerParams {
   ibu_lt: number;
   ibu_gt: number;
   beer_name: string;
+  order: { orderType: string; orderBy: string };
+}
 
-  order: string;
+export interface APIError {
+  error: string;
+  message: string;
+  statusCode: number;
 }

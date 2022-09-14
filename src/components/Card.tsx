@@ -2,7 +2,7 @@ import { srmToHex } from "../helpers";
 import { Link } from "react-router-dom";
 import { Beer } from "../types";
 
-const glass: string = "../vaso1.png";
+const glass = require("../vaso1.png");
 
 interface CardProps {
   beer: Beer;
