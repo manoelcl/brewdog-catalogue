@@ -1,15 +1,18 @@
-import { BaseSyntheticEvent, ChangeEventHandler, useState } from "react";
+import { ChangeEventHandler, FormEventHandler, useState } from "react";
 import Card from "../components/Card";
 import SearchBar from "../components/SearchBar";
 import { generateUrlQuery } from "../helpers";
 import { useSearchParams } from "react-router-dom";
-import { Beer, SearchBeerParams } from "../types";
+import { Beer, SearchBeerParams, SearchOrderParams } from "../types";
 
 function BeerSearch(): JSX.Element {
   let [searchParams, setSearchParams] = useSearchParams();
   let [requestedBeers, setBeers] = useState<Beer[] | Beer[]>();
-  let [order, setOrder] = useState({});
-  const queryParams: SearchBeerParams = {
+  let [orderParams, setOrderParams] = useState<SearchOrderParams>({
+    order: "asc",
+    orderBy: "",
+  });
+  const [queryParams, setQueryParams] = useState<SearchBeerParams>({
     abv_gt: 0,
     abv_lt: 0,
     ebc_lt: 0,
@@ -17,12 +20,17 @@ function BeerSearch(): JSX.Element {
     ibu_lt: 0,
     ibu_gt: 0,
     beer_name: "",
-    order: { orderType: "asc", orderBy: "" },
-  };
+  });
 
   const updateParams: ChangeEventHandler = (e) => {
     const target = e.target as HTMLInputElement;
-    console.log(target.id, target.value);
+    setQueryParams({ ...queryParams, [target.id]: target.value });
+  };
+
+  const updateOrderParams: FormEventHandler = (e) => {
+    const target = e.target as HTMLInputElement;
+    const values: string[] = target.id.split("-");
+    setOrderParams({ orderBy: values[0], order: values[1] });
   };
 
   return (
@@ -30,7 +38,11 @@ function BeerSearch(): JSX.Element {
       {!queryParams ? (
         <h2>loading...</h2>
       ) : (
-        <SearchBar params={queryParams} updateParams={updateParams}></SearchBar>
+        <SearchBar
+          params={queryParams}
+          updateParams={updateParams}
+          updateOrderParams={updateOrderParams}
+        ></SearchBar>
       )}
       {requestedBeers ? (
         <ul>

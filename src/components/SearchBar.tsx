@@ -1,12 +1,17 @@
-import { ChangeEventHandler } from "react";
+import { ChangeEventHandler, FormEventHandler } from "react";
 import { SearchBeerParams } from "../types";
 
 interface SearchBarProps {
   params: SearchBeerParams;
   updateParams: ChangeEventHandler;
+  updateOrderParams: FormEventHandler;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ params, updateParams }) => {
+const SearchBar: React.FC<SearchBarProps> = ({
+  params,
+  updateParams,
+  updateOrderParams,
+}) => {
   console.log(params);
 
   return (
@@ -83,12 +88,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ params, updateParams }) => {
         ></input>
       </fieldset>
       {/* <div className="separator"></div> */}
-      <fieldset
-        className="order"
-        // onChange={(event) =>
-        //   updateSearchOrder(event.target.id, event.target.value)
-        // }
-      >
+      <fieldset className="order" onChange={updateOrderParams}>
         <legend>Order by:</legend>
         <label htmlFor="ibu-asc">IBU asc:</label>
         <input type="radio" name="orderby" id="ibu-asc" />

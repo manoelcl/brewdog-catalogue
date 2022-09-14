@@ -50,7 +50,11 @@ export interface SearchBeerParams {
   ibu_lt: number;
   ibu_gt: number;
   beer_name: string;
-  order: { orderType: string; orderBy: string };
+}
+
+export interface SearchOrderParams {
+  order: string;
+  orderBy: string;
 }
 
 export interface APIError {
