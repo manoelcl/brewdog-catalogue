@@ -4,7 +4,7 @@ import useBeers from "../hooks/useBeers";
 
 const Collection: React.FC = () => {
   const beerCollection = [1, 2, 25, 35];
-  const { beers, error } = useBeers(beerCollection);
+  const { beers, error } = useBeers({ beerIds: beerCollection });
   if (beers !== null) {
     return (
       <ul>

@@ -7,7 +7,7 @@ const glass = require("../vaso1.png");
 function BeerDetails(): JSX.Element {
   const navigate = useNavigate();
   let { beerId } = useParams();
-  const { beers, error } = useBeers([Number(beerId)]);
+  const { beers, error } = useBeers({ beerIds: [Number(beerId)] });
 
   if (error) {
     return (

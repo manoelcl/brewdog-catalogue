@@ -12,8 +12,6 @@ const SearchBar: React.FC<SearchBarProps> = ({
   updateParams,
   updateOrderParams,
 }) => {
-  console.log(params);
-
   return (
     <form
       className="search-bar"
@@ -69,7 +67,9 @@ const SearchBar: React.FC<SearchBarProps> = ({
         ></input>
       </fieldset>
       <fieldset>
-        <legend>{/* IBU {searchParams.ibu_gt}-{searchParams.ibu_lt} */}</legend>
+        <legend>
+          IBU {params.ibu_gt}-{params.ibu_lt}
+        </legend>
         <label htmlFor="ibu_lt">max</label>
         <input
           type="range"
@@ -87,7 +87,6 @@ const SearchBar: React.FC<SearchBarProps> = ({
           onChange={updateParams}
         ></input>
       </fieldset>
-      {/* <div className="separator"></div> */}
       <fieldset className="order" onChange={updateOrderParams}>
         <legend>Order by:</legend>
         <label htmlFor="ibu-asc">IBU asc:</label>

@@ -43,13 +43,13 @@ export interface Beer {
 }
 
 export interface SearchBeerParams {
-  abv_lt: number;
-  abv_gt: number;
-  ebc_lt: number;
-  ebc_gt: number;
-  ibu_lt: number;
-  ibu_gt: number;
-  beer_name: string;
+  abv_lt?: string;
+  abv_gt?: string;
+  ebc_lt?: string;
+  ebc_gt?: string;
+  ibu_lt?: string;
+  ibu_gt?: string;
+  beer_name?: string;
 }
 
 export interface SearchOrderParams {

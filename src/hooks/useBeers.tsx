@@ -1,20 +1,27 @@
-import { useEffect, useState } from "react";
+import { Dispatch, useEffect, useState } from "react";
 import getBeersService from "../services/getBeersService";
-import { Beer } from "../types";
+import { Beer, SearchBeerParams } from "../types";
 
 export interface BeerResponse {
   beers: Beer[] | null;
   error: Error | null;
+  setQueryObject: Dispatch<React.SetStateAction<UseBeersProps>>;
 }
 
-const useBeers = (beerIds: number[]): BeerResponse => {
+export interface UseBeersProps {
+  beerIds?: number[];
+  queryParams?: SearchBeerParams;
+}
+
+const useBeers = (props: UseBeersProps): BeerResponse => {
   const [beers, setBeers] = useState<Beer[] | null>(null);
   const [error, setError] = useState<Error | null>(null);
+  const [queryObject, setQueryObject] = useState<UseBeersProps>(props);
 
   useEffect(() => {
     const request = async () => {
       try {
-        const req = await getBeersService(beerIds);
+        const req = await getBeersService(queryObject);
         setBeers(req);
       } catch (err) {
         setError(err as Error);
@@ -22,9 +29,9 @@ const useBeers = (beerIds: number[]): BeerResponse => {
       }
     };
     request();
-  }, []);
+  }, [queryObject]);
 
-  return { beers, error };
+  return { beers, setQueryObject, error };
 };
 
 export default useBeers;

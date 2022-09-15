@@ -1,9 +1,9 @@
 import { ChangeEventHandler, FormEventHandler, useState } from "react";
 import Card from "../components/Card";
 import SearchBar from "../components/SearchBar";
-import { generateUrlQuery } from "../helpers";
 import { useSearchParams } from "react-router-dom";
 import { Beer, SearchBeerParams, SearchOrderParams } from "../types";
+import useBeers from "../hooks/useBeers";
 
 function BeerSearch(): JSX.Element {
   let [searchParams, setSearchParams] = useSearchParams();
@@ -13,18 +13,21 @@ function BeerSearch(): JSX.Element {
     orderBy: "",
   });
   const [queryParams, setQueryParams] = useState<SearchBeerParams>({
-    abv_gt: 0,
-    abv_lt: 0,
-    ebc_lt: 0,
-    ebc_gt: 0,
-    ibu_lt: 0,
-    ibu_gt: 0,
-    beer_name: "",
+    abv_gt: "0",
+    abv_lt: "20",
+    ebc_lt: "90",
+    ebc_gt: "0",
+    ibu_lt: "200",
+    ibu_gt: "0",
   });
+
+  const { beers, setQueryObject } = useBeers({ queryParams: queryParams });
 
   const updateParams: ChangeEventHandler = (e) => {
     const target = e.target as HTMLInputElement;
-    setQueryParams({ ...queryParams, [target.id]: target.value });
+    const newQuery = { ...queryParams, [target.id]: target.value };
+    setQueryParams(newQuery);
+    setQueryObject({ queryParams: newQuery });
   };
 
   const updateOrderParams: FormEventHandler = (e) => {
@@ -44,15 +47,17 @@ function BeerSearch(): JSX.Element {
           updateOrderParams={updateOrderParams}
         ></SearchBar>
       )}
-      {requestedBeers ? (
+      {beers ? (
         <ul>
-          {requestedBeers.length ? (
-            requestedBeers
-              // .sort((a, b) =>
-              //   queryParams.order.orderType === "asc"
-              //     ? a[queryParams.order.orderBy] - b[queryParams.order.orderBy]
-              //     : b[queryParams.order.orderBy] - a[queryParams.order.orderBy]
-              // )
+          {beers.length ? (
+            beers
+              .sort((a, b) =>
+                orderParams.order === "asc"
+                  ? (a[orderParams.orderBy as keyof Beer] as number) -
+                    (b[orderParams.orderBy as keyof Beer] as number)
+                  : (b[orderParams.orderBy as keyof Beer] as number) -
+                    (a[orderParams.orderBy as keyof Beer] as number)
+              )
               .map((beer) => <Card key={beer.id} beer={beer} />)
           ) : (
             <h2>Not beers found with the current search parameters</h2>
