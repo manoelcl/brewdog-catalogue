@@ -7,7 +7,6 @@ import useBeers from "../hooks/useBeers";
 
 function BeerSearch(): JSX.Element {
   let [searchParams, setSearchParams] = useSearchParams();
-  let [requestedBeers, setBeers] = useState<Beer[] | Beer[]>();
   let [orderParams, setOrderParams] = useState<SearchOrderParams>({
     order: "asc",
     orderBy: "",

@@ -1,4 +1,3 @@
-import { stringify } from "querystring";
 import { UseBeersProps } from "../hooks/useBeers";
 import { Beer } from "../types";
 
