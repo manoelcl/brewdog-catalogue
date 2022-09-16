@@ -1,6 +1,7 @@
-import { srmToHex } from "../helpers";
 import { useNavigate, useParams } from "react-router-dom";
 import useBeers from "../hooks/useBeers";
+import Card from "../components/Card";
+import ErrorDisplay from "../components/ErrorDisplay";
 
 const glass = require("../vaso1.png");
 
@@ -9,49 +10,18 @@ function BeerDetails(): JSX.Element {
   let { beerId } = useParams();
   const { beers, error } = useBeers({ beerIds: [Number(beerId)] });
 
-  if (error) {
-    return (
-      <>
-        <h2>{error.name}</h2>
-        <h3>{error.message}</h3>
-      </>
-    );
-  }
+  if (error) return <ErrorDisplay error={error} />;
 
   if (beers !== null) {
     console.log(beers[0]);
     return (
       <article className="card-big">
         <button onClick={() => navigate(-1)}>Back</button>
-        <header style={{ backgroundColor: srmToHex(beers[0].srm) }}>
-          <div className="glass">
-            <div
-              className="mask"
-              style={{ backgroundColor: srmToHex(beers[0].srm) }}
-            ></div>
-            <img className="overlay" src={glass} alt="vaso" />
-          </div>
-          <h3>{beers[0].name}</h3>
-        </header>
-        <h4>{beers[0].tagline}</h4>
-        <p className="description">{beers[0].description}</p>
-        <footer>
-          <p>
-            IBU: <span>{beers[0].ibu}</span>
-          </p>
-          <img
-            className="imagen-api"
-            src={beers[0].image_url}
-            alt={`${beers[0].id} ${beers[0].name}`}
-          ></img>
-          <p>
-            ABV: <span>{beers[0].abv}</span>
-          </p>
-        </footer>
+        <Card beer={beers[0]} />
       </article>
     );
   }
-  return <></>;
+  return <>loading</>;
 }
 
 export default BeerDetails;

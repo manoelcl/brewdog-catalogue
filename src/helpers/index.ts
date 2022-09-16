@@ -1,3 +1,5 @@
+import { SearchBeerParams } from "../types";
+
 const SRM_VALUES: string[] = [
   "#FFE699",
   "#FFD878",
@@ -44,11 +46,7 @@ const SRM_VALUES: string[] = [
 export const srmToHex = (srm: number) =>
   SRM_VALUES[srm > 40 ? 39 : Math.round(srm) - 1];
 
-export const generateUrlQuery = (params: string[]) => {
-  let query = "?";
-  for (const property in params) {
-    query = `${query}${property}=${params[property]}&`;
-  }
-  console.log(query);
-  return query;
+export const generateQweryFromSearch = (searchParams: URLSearchParams) => {
+  if (!searchParams) return null;
+  return Object.fromEntries(searchParams) as SearchBeerParams;
 };

@@ -5,6 +5,7 @@ import Collection from "./views/Collection";
 import BeerSearch from "./views/BeerSearch";
 import Home from "./views/Home";
 import NavBar from "./components/NavBar";
+import { Suspense } from "react";
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
       </header>
       <main>
         <BrowserRouter>
-          <NavBar></NavBar>
+          <NavBar />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/beers" element={<BeerSearch />} />

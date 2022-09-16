@@ -2,6 +2,7 @@ import { ChangeEventHandler, FormEventHandler, useState } from "react";
 import Card from "../components/Card";
 import SearchBar from "../components/SearchBar";
 import { useSearchParams } from "react-router-dom";
+import { generateQweryFromSearch } from "../helpers";
 import { Beer, SearchBeerParams, SearchOrderParams } from "../types";
 import useBeers from "../hooks/useBeers";
 
@@ -11,20 +12,30 @@ function BeerSearch(): JSX.Element {
     order: "asc",
     orderBy: "",
   });
-  const [queryParams, setQueryParams] = useState<SearchBeerParams>({
-    abv_gt: "0",
-    abv_lt: "20",
-    ebc_lt: "90",
-    ebc_gt: "0",
-    ibu_lt: "200",
-    ibu_gt: "0",
-  });
+  const [queryParams, setQueryParams] = useState<SearchBeerParams>(
+    generateQweryFromSearch(searchParams) || {
+      abv_gt: "0",
+      abv_lt: "20",
+      ebc_lt: "90",
+      ebc_gt: "0",
+      ibu_lt: "200",
+      ibu_gt: "0",
+    }
+  );
 
-  const { beers, setQueryObject } = useBeers({ queryParams: queryParams });
+  const { beers, setQueryObject } = useBeers({
+    queryParams: queryParams,
+  });
 
   const updateParams: ChangeEventHandler = (e) => {
     const target = e.target as HTMLInputElement;
-    const newQuery = { ...queryParams, [target.id]: target.value };
+    const newQuery = Object.fromEntries(
+      Object.entries({ ...queryParams, [target.id]: target.value }).filter(
+        ([, value]) => value && value !== "" && value !== "0"
+      )
+    );
+
+    setSearchParams(newQuery);
     setQueryParams(newQuery);
     setQueryObject({ queryParams: newQuery });
   };
@@ -46,6 +57,7 @@ function BeerSearch(): JSX.Element {
           updateOrderParams={updateOrderParams}
         ></SearchBar>
       )}
+
       {beers ? (
         <ul>
           {beers.length ? (
@@ -63,7 +75,7 @@ function BeerSearch(): JSX.Element {
           )}
         </ul>
       ) : (
-        <h2>API request failed! Try again later</h2>
+        <h2>Loading...</h2>
       )}
     </>
   );

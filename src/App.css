@@ -13,7 +13,7 @@
   --bg-gradient2: rgb(238, 226, 192);
   --bg-gradient3: rgb(206, 187, 168);
   --bg-gradient4: rgb(233, 233, 230);
-  --transparent-bg1: rgba(240, 248, 255, 0.205);
+  --transparent-bg1: rgba(80, 80, 80, 0.8);
   --transparent-bg2: rgba(158, 161, 164, 0.549);
   --button-hover: rgba(170, 170, 170, 0.447);
 }
@@ -316,6 +316,7 @@ section:first-of-type p {
   position: fixed;
   width: 100%;
   bottom: 0;
+  backdrop-filter: blur(8px);
 }
 
 .App > footer a {
@@ -327,6 +328,7 @@ section:first-of-type p {
   top: 0;
   z-index: 2;
   background-color: var(--transparent-bg1);
+  backdrop-filter: blur(8px);
   display: flex;
   flex-direction: row;
   justify-content: center;

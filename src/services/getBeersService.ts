@@ -16,15 +16,13 @@ const getBeersService = async ({
     }
     if (queryParams) {
       const params = new URLSearchParams({ ...queryParams });
-      if (queryParams.beer_name === "") params.delete("beer_name");
       const response = await fetch(
         `https://api.punkapi.com/v2/beers?${params.toString()}`
       );
       const beers: Beer[] = await response.json();
-      if (!beers[0]) throw new Error("No results with the selected params");
       return beers;
     }
-    throw new Error("Bad request");
+    throw new Error("Search should include arguments");
   } catch (err) {
     console.log(err);
     throw err;
