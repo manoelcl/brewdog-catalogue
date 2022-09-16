@@ -26,14 +26,14 @@ const SearchBar: React.FC<SearchBarProps> = ({
       ></input>
       <fieldset>
         <legend>
-          Alcohol {params.abv_gt}-{params.abv_lt}
+          Alcohol {params.abv_gt || "0"}-{params.abv_lt || "0"}
         </legend>
         <label htmlFor="abv_lt">max</label>
         <input
           type="range"
           id="abv_lt"
           max={20}
-          defaultValue={params.abv_lt}
+          defaultValue={params.abv_lt || 0}
           onChange={updateParams}
         ></input>
         <label htmlFor="abv_gt">min</label>
@@ -41,20 +41,20 @@ const SearchBar: React.FC<SearchBarProps> = ({
           type="range"
           id="abv_gt"
           max={20}
-          defaultValue={params.abv_gt}
+          defaultValue={params.abv_gt || 0}
           onChange={updateParams}
         ></input>
       </fieldset>
       <fieldset>
         <legend>
-          Color {params.ebc_gt}-{params.ebc_lt}
+          Color {params.ebc_gt || "0"}-{params.ebc_lt || "0"}
         </legend>
         <label htmlFor="ebc_lt">max</label>
         <input
           type="range"
           id="ebc_lt"
           max={90}
-          defaultValue={params.ebc_lt}
+          defaultValue={params.ebc_lt || 0}
           onChange={updateParams}
         ></input>
         <label htmlFor="ebc_gt">min</label>
@@ -62,20 +62,20 @@ const SearchBar: React.FC<SearchBarProps> = ({
           type="range"
           id="ebc_gt"
           max={90}
-          defaultValue={params.ebc_gt}
+          defaultValue={params.ebc_gt || 0}
           onChange={updateParams}
         ></input>
       </fieldset>
       <fieldset>
         <legend>
-          IBU {params.ibu_gt}-{params.ibu_lt}
+          IBU {params.ibu_gt || "0"}-{params.ibu_lt || "0"}
         </legend>
         <label htmlFor="ibu_lt">max</label>
         <input
           type="range"
           id="ibu_lt"
           max={200}
-          defaultValue={params.ibu_lt}
+          defaultValue={params.ibu_lt || 0}
           onChange={updateParams}
         ></input>
         <label htmlFor="ibu_gt">min</label>
@@ -83,7 +83,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
           type="range"
           id="ibu_gt"
           max={200}
-          defaultValue={params.ibu_gt}
+          defaultValue={params.ibu_gt || 0}
           onChange={updateParams}
         ></input>
       </fieldset>

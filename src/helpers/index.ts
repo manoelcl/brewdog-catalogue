@@ -48,7 +48,7 @@ export const srmToHex = (srm: number) =>
   SRM_VALUES[srm > 40 ? 39 : Math.round(srm) - 1];
 
 export const generateQweryFromSearch = (searchParams: URLSearchParams) => {
-  if (!searchParams) return null;
+  if (Array.from(searchParams.keys()).length < 1) return null;
   return Object.fromEntries(searchParams) as SearchBeerParams;
 };
 
