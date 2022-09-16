@@ -1,4 +1,5 @@
 import { SearchBeerParams } from "../types";
+import { Note } from "../components/Notes";
 
 const SRM_VALUES: string[] = [
   "#FFE699",
@@ -49,4 +50,9 @@ export const srmToHex = (srm: number) =>
 export const generateQweryFromSearch = (searchParams: URLSearchParams) => {
   if (!searchParams) return null;
   return Object.fromEntries(searchParams) as SearchBeerParams;
+};
+
+export const getNotes = (): Note[] => {
+  const local = localStorage.getItem("beerNotes");
+  return local ? JSON.parse(local) : [];
 };

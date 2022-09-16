@@ -1,10 +1,11 @@
 import React, { Suspense } from "react";
 import Card from "../components/Card";
 import ErrorDisplay from "../components/ErrorDisplay";
+import { getNotes } from "../helpers";
 import useBeers from "../hooks/useBeers";
 
 const Collection: React.FC = () => {
-  const beerCollection: number[] = [12, 3, 4, 5];
+  const beerCollection: number[] = getNotes().map((note) => note.id);
   const { beers, error } = useBeers({ beerIds: beerCollection });
 
   if (error) return <ErrorDisplay error={error} />;
@@ -21,7 +22,7 @@ const Collection: React.FC = () => {
     );
   }
 
-  return <>loading</>;
+  return <>Loading...</>;
 };
 
 export default Collection;

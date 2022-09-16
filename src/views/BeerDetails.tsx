@@ -2,6 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import useBeers from "../hooks/useBeers";
 import Card from "../components/Card";
 import ErrorDisplay from "../components/ErrorDisplay";
+import Notes from "../components/Notes";
 
 const glass = require("../vaso1.png");
 
@@ -18,10 +19,12 @@ function BeerDetails(): JSX.Element {
       <article className="card-big">
         <button onClick={() => navigate(-1)}>Back</button>
         <Card beer={beers[0]} />
+        <Notes id={Number(beerId)}></Notes>
       </article>
     );
   }
-  return <>loading</>;
+
+  return <>Loading...</>;
 }
 
 export default BeerDetails;
