@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, TextareaHTMLAttributes } from "react";
+import React, { MouseEventHandler } from "react";
 import { useRef } from "react";
 
 import { useState } from "react";
@@ -37,17 +37,17 @@ const Notes: React.FC<NotesProps> = ({ id }) => {
   };
 
   return (
-    <>
-      {edit ? <button onClick={clickEventHandler}>Save changes</button> : null}
+    <div className="notes">
+      <h2>📝 Notes:</h2>
       <textarea
         ref={textRef}
         defaultValue={notes.find((note) => note.id === id)?.content || ""}
         onFocus={() => setEdit(true)}
         autoComplete="off"
-        cols={50}
-        rows={20}
+        placeholder="Press here to take your own notes"
       ></textarea>
-    </>
+      {edit ? <button onClick={clickEventHandler}>Save changes</button> : null}
+    </div>
   );
 };
 

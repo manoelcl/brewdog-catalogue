@@ -1,3 +1,4 @@
+import { FocusEventHandler, useState } from "react";
 import { ChangeEventHandler, FormEventHandler } from "react";
 import { SearchBeerParams } from "../types";
 
@@ -12,17 +13,32 @@ const SearchBar: React.FC<SearchBarProps> = ({
   updateParams,
   updateOrderParams,
 }) => {
+  const [active, setActive] = useState<Boolean>(false);
+
+  const blurHandle: FocusEventHandler = (event) => {
+    console.log(event.target);
+    const currentTarget = event.currentTarget;
+    requestAnimationFrame(() => {
+      if (!currentTarget.contains(document.activeElement)) {
+        setActive(false);
+      }
+    });
+  };
+
   return (
     <form
-      className="search-bar"
+      className={active ? "search-bar active" : "search-bar"}
       onSubmit={(e) => e.preventDefault()}
       tabIndex={0}
+      onFocus={() => setActive(true)}
+      onBlur={blurHandle}
     >
       <input
         type="text"
         id="beer_name"
         onChange={updateParams}
         placeholder="Search by name"
+        autoComplete="off"
       ></input>
       <fieldset>
         <legend>
