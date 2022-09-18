@@ -1,3 +1,48 @@
+# The complete Brewdog catalogue
+## Search and explore the Brewdog beers
+
+This is a React frontend for the [Punk API](https://punkapi.com/) an API with the complete Brewdog catalogue.
+It's deployed in the following [Vercel site](https://brewdog-catalogue.vercel.app/)
+
+- It allows you to search beers by name, color, alcohol by volume and bitterness.
+- You can take notes and create a notes collection.
+- Design is responsive and developed using plain CSS.
+
+It features the following characteristics:
+
+- Craft Beer inspired aesthetics
+- Strong visual focus on beer colors (dynamic beer colors for visual persons)
+- Parallax effect and blend mode images
+- Search params and persistent search results
+- Responsive layout
+- Mobile devices optimization
+- Notes system based on local storages
+
+# Start this repo
+
+- Download the repository
+- Run `npm start` in the repository folder
+- The website should open in your browser at [http://localhost:3000](http://localhost:3000).
+- For more options, see the `Getting Started with Create React App` at the end of this document or see the full documentation at [Create React App](https://github.com/facebook/create-react-app) for more info.
+
+# Screenshots
+
+### Main
+![screenshot](https://github.com/manoelcl/brewdog-catalogue/blob/main/Screenshots/Screenshot.png)
+
+### Beer search
+![screenshot](https://github.com/manoelcl/brewdog-catalogue/blob/main/Screenshots/Screenshot2.png)
+
+### Notes collection
+![screenshot](https://github.com/manoelcl/brewdog-catalogue/blob/main/Screenshots/Screenshot3.png)
+
+### Beer details
+![screenshot](https://github.com/manoelcl/brewdog-catalogue/blob/main/Screenshots/Screenshot4.png)
+![screenshot](https://github.com/manoelcl/brewdog-catalogue/blob/main/Screenshots/Screenshot5.png)
+
+### Mobile Main
+![screenshot](https://github.com/manoelcl/brewdog-catalogue/blob/main/Screenshots/Screenshot6.png)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
