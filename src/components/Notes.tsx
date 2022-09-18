@@ -20,7 +20,7 @@ const Notes: React.FC<NotesProps> = ({ id }) => {
 
   if (!id) return null;
 
-  const clickEventHandler: MouseEventHandler = () => {
+  const clickEventHandlerSave: MouseEventHandler = () => {
     setEdit(false);
     const index = notes.findIndex((note) => note.id === id);
     const newNote: Note = {
@@ -36,6 +36,20 @@ const Notes: React.FC<NotesProps> = ({ id }) => {
     localStorage.setItem("beerNotes", JSON.stringify(notes));
   };
 
+  const clickEventHandlerRemove: MouseEventHandler = () => {
+    setEdit(false);
+    if (textRef?.current?.value) {
+      textRef.current.value = "";
+    }
+
+    const index = notes.findIndex((note) => note.id === id);
+
+    if (index >= 0) {
+      notes.splice(index, 1);
+    }
+    localStorage.setItem("beerNotes", JSON.stringify(notes));
+  };
+
   return (
     <div className="notes">
       <h2>📝 Notes:</h2>
@@ -46,7 +60,12 @@ const Notes: React.FC<NotesProps> = ({ id }) => {
         autoComplete="off"
         placeholder="Press here to take your own notes"
       ></textarea>
-      {edit ? <button onClick={clickEventHandler}>Save changes</button> : null}
+      {edit ? (
+        <>
+          <button onClick={clickEventHandlerSave}>Save changes</button>
+          <button onClick={clickEventHandlerRemove}>Remove note</button>
+        </>
+      ) : null}
     </div>
   );
 };

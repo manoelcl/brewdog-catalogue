@@ -21,8 +21,7 @@ function BeerDetails(): JSX.Element {
         <Card beer={beers[0]} />
         <Notes id={Number(beerId)}></Notes>
         <section className="other">
-          <h2>Other details:</h2>
-          <h3>Ingredients:</h3>
+          <h2>🌾 Ingredients:</h2>
           <h3>Hops:</h3>
           <ul>
             {beers[0].ingredients.hops.map((ingr, index) => (
@@ -57,10 +56,36 @@ function BeerDetails(): JSX.Element {
             {"Yeast: "}
             {beers[0].ingredients.yeast}
           </h3>
-          <h2>Brewers tips:</h2>
+          <h2>💡 Brewers tips:</h2>
           <p>{beers[0].brewers_tips}</p>
-          <h3>Contributed by: {beers[0].contributed_by}</h3>
+          <h2>🍽️ Food pairing:</h2>
+          <ul>
+            {beers[0].food_pairing.map((food, index) => (
+              <li key={index}>
+                <p>{food}</p>
+              </li>
+            ))}
+          </ul>
+          <h2>⚙️ Method:</h2>
+          <h3>Fermentation:</h3>
+          <p>
+            {beers[0].method.fermentation.temp.value}{" "}
+            {beers[0].method.fermentation.temp.unit}
+          </p>
+          <h3>Mash temperature:</h3>
+
+          {beers[0].method.mash_temp.map((property, index) => (
+            <p key={index}>
+              {property.duration} {property.temp.value} {property.temp.unit}
+            </p>
+          ))}
+
+          <h3>Twist:</h3>
+          <p>{beers[0].method.twist}</p>
         </section>
+        <footer>
+          <p>Contributed by: {beers[0].contributed_by}</p>
+        </footer>
       </article>
     );
   }
